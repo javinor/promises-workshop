@@ -1,0 +1,19 @@
+{
+  "name": "promise-workshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "go.js",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "promises-aplus-tests": "^2.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node ./test/adapter.test.js",
+    "test:bluebird": "node ./test/examples/bluebird.test.js",
+    "test:native": "node ./test/examples/native.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
