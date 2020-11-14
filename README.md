@@ -34,6 +34,8 @@ npm run test:bluebird
 
 * `npm install lodash`
 
+* Don't accidentally use the native `Promise` in your implementation
+
 ## Background
 
 A _promise_ represents the eventual result of an asynchronous operation. 

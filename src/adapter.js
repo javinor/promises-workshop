@@ -1,3 +1,4 @@
+const Promise = undefined
 const {createAdapter} = require("./createAdapter")
 
 class MyPromise {
