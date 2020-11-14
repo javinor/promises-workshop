@@ -1,4 +1,4 @@
-# Make me a Promise for Greater Good
+# Make You a Promise for Great Good!
 
 _"It is easy to make promises - it is hard work to keep them."_ 
 
@@ -22,6 +22,13 @@ To see fully implemented examples go to [./src/examples/](./src/examples/) and/o
 npm run test:native
 npm run test:bluebird
 ```
+
+## Quick Refresher
+
+* A `promise` is an object or function with a then method whose behavior conforms to the specification
+* A promise must be in one of three states: pending, fulfilled, or rejected.
+* A promise must provide a `then` method which accepts two arguments: `promise.then(onFulfilled, onRejected)`
+* For details, go to https://promisesaplus.com
 
 
 ## Notes, Tips and Recommendations
