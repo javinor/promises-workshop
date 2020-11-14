@@ -3,17 +3,17 @@ const {createAdapter} = require("./createAdapter")
 
 class MyPromise {
   constructor(callback) {
-    const resolve = () => {
+    const resolve = (value) => {
       // TODO implement me!
     }
-    const reject = () => {
+    const reject = (reason) => {
       // TODO implement me!
     }
 
     callback(resolve, reject)
   }
 
-  then() {
+  then(onFulfilled, onRejected) {
     // TODO implement me!
   }
 }
