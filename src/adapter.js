@@ -19,5 +19,6 @@ class MyPromise {
 }
 
 module.exports = {
-  myAdapter: createAdapter(MyPromise)
+  myAdapter: createAdapter(MyPromise),
+  MyPromise,
 }
