@@ -10,7 +10,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "node ./test/adapter.test.js",
+    "test": "npm run test:basic && npm run test:mypromise",
+    "test:basic": "node ./test/basic.test.js",
+    "test:mypromise": "node ./test/adapter.test.js",
     "test:bluebird": "node ./test/examples/bluebird.test.js",
     "test:native": "node ./test/examples/native.test.js"
   },

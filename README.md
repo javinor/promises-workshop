@@ -33,6 +33,8 @@ npm run test:bluebird
 
 ## Notes, Tips and Recommendations
 
+* start by making `npm run test:basic` pass, see [./test/basic.test.js](./test/basic.test.js).
+
 * The tests cover a lot of edge cases, don't feel obligated to make them pass in the order they appear
 
 * It might be easier to implement the `resolve` logic first, and defer implementing the `reject` logic. They have a lot of similarities
