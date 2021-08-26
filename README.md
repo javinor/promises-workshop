@@ -37,6 +37,8 @@ npm run test:bluebird
 
 * The tests cover a lot of edge cases, don't feel obligated to make them pass in the order they appear
 
+* It can be helpful to run only a specific test instead of all 800+ of them. Go into `./node_modules/promises-aplus-tests/lib/tests`, find the relevant test file (e.g. `2.1.3.js`) and add `.only` to the specific `describe` you want to narrow down to, e.g. `describe("...` -> `describe.only("...` and rerun `npm run test`
+
 * It might be easier to implement the `resolve` logic first, and defer implementing the `reject` logic. They have a lot of similarities
 
 * If `promise2 = promise1.then(onFulfilled, onRejected)`, implementations may allow `promise2 === promise1`, provided all requirements are met. I personally found it more convenient to implement `promise2 !== promise1`
