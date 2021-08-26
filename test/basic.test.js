@@ -19,6 +19,7 @@ async function test3() {
   const p = new MyPromise((resolve, reject) => reject(errorMsg))
   try {
     await p
+    throw "fail test"
   } catch (err) {
     assert.equal(err, errorMsg)
   }
@@ -49,6 +50,7 @@ async function test5() {
 
   try {
     await p1
+    throw "fail test"
   } catch (err) {
     assert.equal(err, "something went wrong")
   }
@@ -58,6 +60,7 @@ async function test5() {
 
   try {
     await p3
+    throw "fail test"
   } catch (err) {
     assert.equal(err, "another error!")
   }
