@@ -1,16 +1,21 @@
 const Promise = undefined
-const {createAdapter} = require("./createAdapter")
+const { createAdapter } = require("./createAdapter")
 
 class MyPromise {
   constructor(callback) {
-    const resolve = (value) => {
-      // TODO implement me!
-    }
-    const reject = (reason) => {
-      // TODO implement me!
-    }
+    this.state = 'pending'
+    this.successHandlers = []
+    this.failureHandlers = []
 
-    callback(resolve, reject)
+    callback(this.resolve, this.reject)
+  }
+
+  resolve(value) {
+    // TODO implement me!
+  }
+
+  reject(reason) {
+    // TODO implement me!
   }
 
   then(onFulfilled, onRejected) {
