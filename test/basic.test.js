@@ -1,31 +1,32 @@
-const assert = require("assert");
+const test = require("ava")
+const assert = require("assert")
 const { MyPromise } = require("../src/adapter")
 
-async function test1() {
+test("MyPromise resolves with 7", async t => {
   const p = new MyPromise(res => res(7))
   const result = await p
-  assert.equal(result, 7)
-}
 
-async function test2() {
+  t.is(result, 7);
+});
+
+test("MyPromise's `then` returns a MyPromise that resolves to 14", async t => {
   const p = new MyPromise(res => res(7))
   const p2 = p.then(v => v * 2)
   const result = await p2
-  assert.equal(result, 14)
-}
 
-async function test3() {
-  const errorMsg = "this is an error message"
-  const p = new MyPromise((resolve, reject) => reject(errorMsg))
-  try {
-    await p
-    throw "fail test"
-  } catch (err) {
-    assert.equal(err, errorMsg)
-  }
-}
+  t.is(result, 14);
+});
 
-async function test4() {
+test("MyPromise rejects with the given error message", async t => {
+  const expectedErrorMsg = "this is the expected error message"
+  const p = new MyPromise((resolve, reject) => reject(new Error(expectedErrorMsg)))
+
+  const error = await t.throwsAsync(p);
+
+  t.is(error.message, expectedErrorMsg);
+});
+
+test("MyPromise's `then` registers multiple success handlers", async t => {
   let pResolve
   const p1 = new MyPromise(res => { pResolve = res })
   const p2 = p1.then(v => v * 2)
@@ -35,49 +36,24 @@ async function test4() {
   const p1Result = await p1
   const p2Result = await p2
   const p3Result = await p3
-  assert.equal(p1Result, 13)
-  assert.equal(p2Result, 26)
-  assert.equal(p3Result, 39)
-}
 
-async function test5() {
+  t.is(p1Result, 13);
+  t.is(p2Result, 26);
+  t.is(p3Result, 39);
+});
+
+test("MyPromise's onReject handlers can resolve and reject", async t => {
   let pReject
   const p1 = new MyPromise((res, rej) => { pReject = rej })
   const p2 = p1.then(null, () => "I recovered!")
-  const p3 = p1.then(null, () => { throw "another error!" })
+  const p3 = p1.then(null, () => { throw new Error("another error!") })
 
   pReject("something went wrong")
 
-  try {
-    await p1
-    throw "fail test"
-  } catch (err) {
-    assert.equal(err, "something went wrong")
-  }
-
   const p2Result = await p2
-  assert.equal(p2Result, "I recovered!")
+  t.is(p2Result, "I recovered!")
 
-  try {
-    await p3
-    throw "fail test"
-  } catch (err) {
-    assert.equal(err, "another error!")
-  }
-}
-
-(async function runTests() {
-  const tests = [test1, test2, test3, test4, test5]
-  console.log(`running ${tests.length} basic tests...\n`)
-
-  for (let i = 1; i <= tests.length; i++) {
-    await tests[i - 1]()
-    console.log(`passed test${i}`)
-  }
-
-  console.log("\n=============>> All basic tests were successful!!!\n\n\n\n")
-})()
-
-
-
+  const error = await t.throwsAsync(p3);
+  t.is(error.message, "another error!");
+});
 

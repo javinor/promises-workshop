@@ -4,6 +4,7 @@
   "description": "",
   "main": "go.js",
   "dependencies": {
+    "ava": "^3.15.0",
     "bluebird": "^3.7.2",
     "lodash": "^4.17.21",
     "promises-aplus-tests": "^2.1.2"
@@ -11,7 +12,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "npm run test:basic && npm run test:mypromise",
-    "test:basic": "node ./test/basic.test.js",
+    "test:basic": "ava ./test/basic.test.js",
     "test:mypromise": "node ./test/adapter.test.js",
     "test:bluebird": "node ./test/examples/bluebird.test.js",
     "test:native": "node ./test/examples/native.test.js"
